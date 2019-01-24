@@ -4,7 +4,6 @@ const sysop = require('./sysop.js');
 
 const fs = require('fs');
 const gm = require('gm').subClass({imageMagick: true});
-const PNG = require('pngjs3').PNG;
 const https = require('https');
 
 const client = new Discord.Client();
@@ -113,7 +112,7 @@ client.on('guildMemberAdd', (member) => {
 	}
 
 
-	function sendWelcome(callback) {
+	function sendWelcomeImage(callback) {
 		client.channels.get('483756339521126414').send(`welcome <@${userID}> to the Shadow Lord Family! Please refer to the \`#rules channel\` before you continue, and enter the code in this channel.`, {
 			files: [{
 				attachment: path_to_welcome_T,
@@ -155,7 +154,7 @@ client.on('guildMemberAdd', (member) => {
 	})
 
 
-	setTimeout(sendWelcome, 5000, err => {
+	setTimeout(sendWelcomeImage, 5000, err => {
 		console.error(err);
 		process.exit(1);
 	})
