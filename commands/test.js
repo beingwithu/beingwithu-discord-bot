@@ -25,6 +25,6 @@ exports.conf = {
 
 exports.help = {
     name: "test",
-    description: "...",
+    description: "no description set",
     usage: "test"
 };
