@@ -5,7 +5,7 @@ module.exports.run = (client, message, args) => {
 
 
 	if (sysop.check(message.author.id) === false && !message.member.hasPermission("MANAGE_ROLES")) {
-    	return message.reply("you must be \`Leader\` to use this command");
+    	return message.reply("you must be \`Moderator\` to use this command");
     }
 
 	if (!args[0] || args[3]) {
