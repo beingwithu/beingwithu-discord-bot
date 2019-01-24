@@ -113,7 +113,7 @@ client.on('guildMemberAdd', (member) => {
 
 
 	function sendWelcomeImage(callback) {
-		client.channels.get('[channel id here]').send(`welcome <@${userID}> to the Shadow Lord Family! Please refer to the \`#rules channel\` before you continue, and enter the code in this channel.`, {
+		client.channels.get('[channel id here]').send(`welcome <@${userID}> to [guild name here]! Please refer to the \`#rules channel\` before you continue, and enter the code in this channel.`, {
 			files: [{
 				attachment: path_to_welcome_T,
 				name: 'welcome.png'
