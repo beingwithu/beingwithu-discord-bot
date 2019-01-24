@@ -1,4 +1,4 @@
-const sysop = ["221011523546513408", "345388822214737920", "269286028274171905"];
+const sysop = ["enter", "the user ids", "of your sysops"];
 let isSys = false, ofSys = false;
 
 
@@ -29,5 +29,4 @@ let ofSysop = function(target) {
 
 exports.isSysop = isSysop;
 
-if (ofSysop)
-	exports.ofSysop = ofSysop;
+if (ofSysop) { exports.ofSysop = ofSysop; }
