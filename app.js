@@ -91,8 +91,8 @@ client.on('guildMemberAdd', (member) => {
 
 
 	function setWelcomeImage(avatar, background, w_template, callback) {
-		let width = 0;
-		let height = 0;
+		let width = 100;
+		let height = 100;
 		
 		gm(avatar)
 		.resize(width, height)
