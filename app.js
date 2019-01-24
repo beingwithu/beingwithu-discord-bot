@@ -37,7 +37,7 @@ fs.readdir('./commands/', (err, files) => {
 client.on('ready', () => {
 	console.log("\n=========================================");
 	console.log("	-- beingwithu-discord-bot (node) --");
-	console.log("	-- Made by beingwithu --");
+	console.log("	-- Credits to beingwithu --");
 	console.log("=========================================");
 	console.log("[bot's name here] is online...\nOutputting responses:\n");
 	client.user.setActivity(`${config.prefix}help`, { type: "PLAYING" });
