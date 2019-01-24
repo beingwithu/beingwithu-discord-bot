@@ -5,6 +5,7 @@ const sysop = require('./sysop.js');
 const fs = require('fs');
 const gm = require('gm').subClass({imageMagick: true});
 const https = require('https');
+const PNG = require('pngjs3').PNG
 
 const client = new Discord.Client();
 const broadcast = client.createVoiceBroadcast(); // for voice
@@ -89,23 +90,25 @@ client.on('guildMemberAdd', (member) => {
 
 
 
-	function setWelcomeImage(image, background, w_template, callback) {
+	function setWelcomeImage(avatar, background, w_template, callback) {
+		let width = 0;
+		let height = 0;
+		
+		gm(avatar)
+		.resize(width, height)
+		.write(avatar, function (err) { if (err) { callback(err); }})
 
-		gm(image)
-		.resize(310)
-		.write(image, function (err) { if (err) { callback(err); }})
 
-
-		function composite() {
+		function compositeIMG() {
 			gm()
 			.in('-page', '+0+0')
 			.in(background)
-			.in('-page', '+545+110')
-			.in(image)
+			.in('-page', '+x+y')
+			.in(avatar)
 			.mosaic()
 			.write(w_template, function (err) { if (err) { callback(err); }})
 		}
-		setTimeout(composite, 1500);
+		setTimeout(compositeIMG, 1500);
 	}
 
 
@@ -121,7 +124,6 @@ client.on('guildMemberAdd', (member) => {
 
 		function clear() {
 			fs.unlink(path_to_welcome_T, function(err) { if (err) { callback(err); }});
-
 			fs.unlink(path_to_image, function(err) { if (err) { callback(err); }});
 			console.log("\n'welcome.png' has successfully been deleted\n");
 			console.log(`\n'${userName}.png' has successfully been deleted\n`);
@@ -132,18 +134,23 @@ client.on('guildMemberAdd', (member) => {
 
 	getImage(imageURL, path_to_image, err => {
 		console.error(err);
+		fs.unlink(path_to_image, function(err) { if (err) { console.error(err); }})
 		process.exit(1);
 	})
 
 
 	setTimeout(setWelcomeImage, 3000, path_to_image, path_to_background, path_to_welcome_T, err => {
 		console.error(err);
+		fs.unlink(path_to_image, function(err) { if (err) { console.error(err); }})
+		fs.unlink(path_to_welcome_T, function(err) { if (err) { console.error(err); }})
 		process.exit(1);
 	})
 
 
 	setTimeout(sendWelcomeImage, 5000, err => {
 		console.error(err);
+		fs.unlink(path_to_image, function(err) { if (err) { console.error(err); }})
+		fs.unlink(path_to_welcome_T, function(err) { if (err) { console.error(err); }})
 		process.exit(1);
 	})
 });
