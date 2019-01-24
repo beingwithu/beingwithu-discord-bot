@@ -65,7 +65,7 @@ module.exports.run = (client, message, args) => {
 
 	function createMute() {
 		if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-			return message.channel.send("Seems like I don't have the permission (manage roles) to do so :cry:");
+			return message.channel.send("Seems like I don't have the permission (manage roles) to do this :cry:");
 		}
 		message.guild.createRole({
 			name: "muted",
