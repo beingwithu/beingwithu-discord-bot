@@ -1,32 +1,17 @@
-const sysop = ["enter", "the user ids", "of your sysops"];
-let isSys = false, ofSys = false;
+const Sysop = ["enter the", "ids of your", "sysops"];
+let sysop_status = false;
 
 
-
-let isSysop = function(sender) {
-	for (let x = 0; x < sysop.length; x++) {
-		if (sender === sysop[x]) {
-			isSys = true;
+let check = function(user_id) {
+	for (let x = 0; x < Sysop.length; x++) {
+		if (user_id === Sysop[x]) {
+			sysop_status = true;
 			break;
 		}
-		else isSys = false;
+		else { sysop_status = false; }
 	}
-	return isSys
+	return sysop_status;
 }
 
 
-let ofSysop = function(target) {
-	for (let y = 0; y < sysop.length; y++) {
-
-		if (target === sysop[y]) {
-			ofSys = true;
-			break;
-		}
-		else ofSys = false;
-	}
-	return ofSys;
-}
-
-exports.isSysop = isSysop;
-
-if (ofSysop) { exports.ofSysop = ofSysop; }
+exports.check = check;
