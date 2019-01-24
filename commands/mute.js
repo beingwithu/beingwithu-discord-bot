@@ -53,7 +53,7 @@ module.exports.run = (client, message, args) => {
 
 	function unmute(target, muted) {
 		target.removeRole(muted).catch(console.error);
-		return message.channel.send(`$<@{target.user.id}> can now chat again!`);
+		return message.channel.send(`<@${target.user.id}> can now chat again!`);
 	}
 
 
