@@ -1,22 +1,27 @@
 module.exports.run = (client, message, args) => {
 	const config = require("../config");
 	const sysop = require("../sysop");
-	if (args[0]) return message.reply(`use    \`${config.prefix}logout\``);
-	const sender = message.author;
+
+
+	if (sysop.check(message.author.id) === false) {
+		return message.reply("you have to be \`Administrator\` to use this command");
+	}
+
+	if (args[0]) { return message.reply(`use    \`${config.prefix}logout\``); }
 
 
     function logout() {
-		const sys = sysop.isSysop(sender.id);
-
-		if (sys === false) return message.reply("You must be \`System Operator\` to use this command");
-
-		message.channel.send("Terminating...");
-
 		client.destroy()
-		.then(console.log(`client was successfully terminated by ${message.author.username}\n`))
+		.then(console.log(`client was successfully destroyed by ${message.author.username}\n`))
 		.catch(console.error);
     }
-    logout();
+
+
+    function main() {
+    	message.channel.send("Ending process...");
+    	logout();
+    }
+    main();
 };
 
 exports.conf = {
@@ -25,6 +30,6 @@ exports.conf = {
 
 exports.help = {
     name: "logout",
-    description: "...",
+    description: "no description set",
     usage: "logout"
 };
