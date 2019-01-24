@@ -1,30 +1,36 @@
 module.exports.run = (client, message, args) => {
+	const config = require("../config.json");
+    const sysop = require("../sysop.js");
 
-    const config = require("../config.json");
-    const sys = require("../sysop.js");
-    const sender = message.author,
-        mSender = message.member;
-    if (!args[0] || Number(args[0]) < 0 || Number(args[0] > 100 || args[1])) return message.reply(`use    \`${config.prefix}clear [amount]\``);
-    let target = Number(args[0]);
+    if (sysop.check(message.author.id) === false && !message.member.hasPermission("MANAGE_MESSAGES")) {
+    	return message.reply("you must be \`Moderator\` to use this command");
+	}
+	if ((!args[0]) || (Number(args[0]) < 1 || Number(args[0] > 100)) || (args[1])) {
+		return message.reply(`use    \`${config.prefix}clear amount\``);
+	}
 
 
-    function clear() {
-
-        if (target === 100) target -= 1;
-        else target += 1;
-
-        if (sys.isSysop(sender.id) === false && !mSender.hasPermission("MANAGE_MESSAGES")) return message.reply("you must be \`Leader\` or higher to use this command");
-        else message.channel.bulkDelete(target);
+    function clear(messages) {
+		message.channel.bulkDelete(messages);
     }
-    clear();
+
+
+    function main() {
+    	let target = Number(args[0]);
+
+		if (target === 100) { target -= 1; }
+		else { target += 1; }
+		clear(target);
+	}
+	main();
 };
 
 exports.conf = {
-    aliases: ["delete", "purge"]
+    aliases: ["purge"]
 };
 
 exports.help = {
     name: "clear",
     description: "...",
-    usage: "clear [amount]"
+    usage: "clear amount"
 };
