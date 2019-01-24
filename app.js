@@ -36,19 +36,16 @@ fs.readdir('./commands/', (err, files) => {
 
 client.on('ready', () => {
 	console.log("\n=========================================");
-	console.log("	-- Shadow AI (node)  --");
+	console.log("	-- beingwithu-discord-bot (node)  --");
 	console.log("	-- Credits to beingwithu --");
 	console.log("=========================================");
-	console.log("Shadow is online...\nOutputting responses:\n");
+	console.log("[enter your bot's name here] is online...\nOutputting responses:\n");
 	client.user.setActivity(`${config.prefix}help`, { type: "PLAYING" });
 });
 
 
 
 client.on('guildMemberAdd', (member) => {
-	member.addRole('483756607659048960').catch(console.error); // unverified role
-
-
 	const dir = __dirname + "/pics";
 	const userName = member.user.username;
 	const userID = member.user.id;
@@ -113,16 +110,7 @@ client.on('guildMemberAdd', (member) => {
 
 
 	function sendWelcomeImage(callback) {
-		client.channels.get('483756339521126414').send(`welcome <@${userID}> to the Shadow Lord Family! Please refer to the \`#rules channel\` before you continue, and enter the code in this channel.`, {
-			files: [{
-				attachment: path_to_welcome_T,
-				name: 'welcome.png'
-			}]
-		})
-		.catch(console.error);
-
-
-		client.channels.get('536415463559659540').send(`We have another one, boys.`, {
+		client.channels.get('[channel id here]').send(`welcome <@${userID}> to the Shadow Lord Family! Please refer to the \`#rules channel\` before you continue, and enter the code in this channel.`, {
 			files: [{
 				attachment: path_to_welcome_T,
 				name: 'welcome.png'
@@ -163,7 +151,7 @@ client.on('guildMemberAdd', (member) => {
 
 
 client.on("guildMemberRemove", (member) => {
-	console.log(`${member.user.username} just left Shadow Lords Family\n`);
+	console.log(`${member.user.username} just left [guild name here]\n`);
 });
 
 
@@ -172,22 +160,10 @@ client.on("message", (message) => {
 	let msg = message.content.toLowerCase();
 	let args = message.content.slice(config.prefix.length).trim().split(' ');
 	let command = args.shift().toLowerCase();
-	let unverified = message.member.roles.find(val => val.name === "unverified");
 	let cmd;
 
 
 	if (message.author.bot) return undefined;
-
-
-	if (unverified && msg.startsWith(config.prefix)) return undefined;
-
-
-	if (unverified && msg === "paradise") {
-		message.member.removeRole('483756607659048960').catch(console.error);
-		message.delete();
-	}
-
-
 	if (!msg.startsWith(config.prefix)) return undefined;
 
 
@@ -196,12 +172,12 @@ client.on("message", (message) => {
 
 		else if (client.aliases.has(command)) { cmd = client.commands.get(client.aliases.get(command)); }
 
-		console.log(`${message.author.tag}: ${msg}\n@Channel: ${message.channel.name}\n`);
+		console.log(`${message.author.tag}: ${msg}\n@Channel: ${message.channel.name}\n`); // keeping track of which person used which command, for moderation purposes
 
 		cmd.run(client, message, args);
 	}
 	catch (err) {
-		console.log(`${message.author.tag} tried to use ${config.prefix}${command}\n`);
+		console.log(`${message.author.tag} tried to use ${config.prefix}${command}\n`); // info on which command was triggered the error
 		console.log(err);
 	}
 	return undefined;
