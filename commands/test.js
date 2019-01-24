@@ -12,11 +12,11 @@ module.exports.run = (client, message, args) => {
 
 
 
-    function test() {
-        return message.reply("no other duelist can compare to you, you're the smartest and best-looking duelist in the planet, perfect in every way shape and form.");
+    function main() {
+        message.reply("no other duelist can compare to you, you're the smartest and best-looking duelist in the planet, perfect in every way shape and form.");
     }
 
-    test();
+    main();
 };
 
 exports.conf = {
