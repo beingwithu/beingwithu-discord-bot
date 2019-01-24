@@ -3,7 +3,7 @@
 Just a work in progress.
 
 Modules Required:
-discord js
+discord.js
 fs
 graphicsmagick
 pngjs3
