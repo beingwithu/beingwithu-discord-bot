@@ -17,4 +17,4 @@ to start, download the repository, make sure you have node js the recommended ve
 how to make a custom welcome message:
 make a folder called pics inside beingwithu-discord-bot directory.
 add pictures inside. the background for the message should be called background.png, if not already convert it to a png file,
-by default make the width and height 1000 and 400, unless you know what you're doing, and the rest is done by the code in app.js
+by default make the width and height 1000 and 400, unless you know what you're doing, and the rest is done by the code in app.js. you have the freedom to move the values around, lets say you want to move where the avatar appears, that would be in app.js the setWelcomeImage() function, or you want to make the avatar smaller or bigger. you have complete freedom over the welcome message.
