@@ -37,7 +37,7 @@ fs.readdir('./commands/', (err, files) => {
 client.on('ready', (ready) => {
 	console.log("\n=========================================");
 	console.log("	-- Shadow AI  (node) --");
-	console.log("	-- Coded by Marlboro --");
+	console.log("	-- Credits to Marlboro --");
 	console.log("=========================================");
 	console.log("Shadow is online...\nOutputting responses:\n");
 	client.user.setActivity(`${config.prefix}help`, { type: "PLAYING" });
