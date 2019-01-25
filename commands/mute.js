@@ -20,7 +20,7 @@ module.exports.run = (client, message, args) => {
 		return message.reply("the mute duration should be at least 5 minutes. Leave this part empty for a default timer of 5 minutes.");
     }
 
-  if (args[0] === "setup-config" && args[1] !== "true") {
+    if (args[0] === "setup-config" && args[1] !== "true") {
     	return message.reply(`the setup-config command is    \`${config.prefix}mute setup-config true\``);
     }
 
