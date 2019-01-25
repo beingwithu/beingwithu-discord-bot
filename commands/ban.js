@@ -8,8 +8,8 @@ module.exports.run = (client, message, args) => {
     	return message.reply("you must be \`Leader\` to use this command");
     }
 
-    if (!args[0] || args[1]) {
-    	return message.reply(`use    \`${config.prefix}ban @user\``);
+    if (!args[0] || args[2]) {
+    	return message.reply(`use    \`${config.prefix}ban @user <optional: misbehavior/raiding/repeated-offender\``);
     }
 
     if (!target) {
@@ -22,14 +22,16 @@ module.exports.run = (client, message, args) => {
 
 
 
-    function ban(target) {
-        target.ban().catch(console.error);
+    function ban(target, reason) {
+        target.ban(reason).catch(console.error);
         return message.channel.send(`${target.user.username} was banned from the server`);
     }
 
 
     function main() {
-    	ban(target);
+    	let reason = "misbehavior";
+    	if (args[1]) { reason = args[1]; }
+    	ban(target, reason);
     }
 
     main();
