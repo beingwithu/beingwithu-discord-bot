@@ -1,0 +1,48 @@
+module.exports.run = (client, message, args) => {
+
+    const config = require("../config.json");
+    const items = require("../items.json");
+    const target = message.mentions.members.first();
+
+
+    if (!args[0] || args[1]) {
+    	return message.reply(`use    \`${config.prefix}mug @user\``);
+	}
+
+	if (!target) {
+    	return message.reply("provide the \`@user\` to mug");
+    }
+
+
+
+	function mug() {
+		const item1 = items.stuff[Math.floor((Math.random() * items.stuff.length) + 1)];
+		let item2 = items.stuff[Math.floor((Math.random() * items.stuff.length) + 1)];
+
+		while (item1 === item2) {
+			item2 = items.stuff[Math.floor((Math.random() * items.stuff.length) + 1)];
+		}
+
+		return message.channel.send(`${target.user.username} was mugged for \*\*${item1}\*\* and \*\*${item2}\*\*`).catch(console.error);
+	}
+
+
+    function main() {
+		mug();
+		return 0;
+	}
+
+	main();
+};
+
+
+exports.conf = {
+    aliases: []
+};
+
+
+exports.help = {
+    name: "mug",
+    description: "no description set",
+    usage: "mug"
+};
