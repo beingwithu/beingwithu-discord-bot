@@ -3,11 +3,14 @@ module.exports.run = (client, message, args) => {
 	const sysop = require("../sysop");
 
 
-	if (sysop.check(message.author.id) === false) {
-		return message.reply("you have to be \`Administrator\` to use this command");
+	if (sysop.check_user(message.author.id) === false) {
+		return message.channel.send("you have to be \`Administrator\` to use this command");
 	}
 
-	if (args[0]) { return message.reply(`use    \`${config.prefix}logout\``); }
+	if (args[0]) {
+		return message.reply(`use    \`${config.prefix}logout\``);
+	}
+
 
 
     function logout() {
@@ -21,12 +24,15 @@ module.exports.run = (client, message, args) => {
     	message.channel.send("Ending process...");
     	logout();
     }
+
     main();
 };
+
 
 exports.conf = {
     aliases: []
 };
+
 
 exports.help = {
     name: "logout",
