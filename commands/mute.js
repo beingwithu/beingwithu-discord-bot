@@ -42,7 +42,7 @@ module.exports.run = (client, message, args) => {
 
     function setChannelPerms(state) {
     	const muted = message.guild.roles.find(val => val.name === "muted");
-		  if (state !== "true") { return message.reply(`\`${config.prefix}mute setup-config true\``); }
+	if (state !== "true") { return message.reply(`\`${config.prefix}mute setup-config true\``); }
 
     	message.guild.channels.forEach(async (channel, id) => {
 			await channel.overwritePermissions(muted, {
