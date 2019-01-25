@@ -1,5 +1,4 @@
 module.exports.run = (client, message, args) => {
-
     const config = require("../config.json");
     const sysop = require("../sysop.js");
     const target = message.mentions.members.first();
