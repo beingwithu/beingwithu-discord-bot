@@ -4,7 +4,7 @@ module.exports.run = (client, message, args) => {
     const target = message.mentions.members.first();
 
 
-    if (sysop.check(message.author.id) === false && !message.member.hasPermission("MANAGE_ROLES")) {
+    if (sysop.check_user(message.author.id) === false && !message.member.hasPermission("MANAGE_ROLES")) {
     	return message.reply("you must be \`Leader\` to use this command");
     }
 
@@ -28,8 +28,8 @@ module.exports.run = (client, message, args) => {
     	return message.reply("provide a \`@user\` to mute");
     }
 
-    if ((args[0] !== "setup-config") && (target && sysop.check(target.id) === true || target.hasPermission("MANAGE_ROLES"))) {
-    	return message.reply(`you can not mute another \`Leader\`. If you feel like this user should be muted, use the \`${config.prefix}force mute\` command or contact the server \`Administrator\`.`);
+    if ((args[0] !== "setup-config") && ((target) && (sysop.check_user(target.user.id) === true || target.hasPermission("MANAGE_ROLES")))) {
+    	return message.reply(`sorry but I can not mute another \`Leader\`. Maybe try the \`${config.prefix}force\` command or contact a server \`Administrator\``);
     }
 
     if ((args[0] !== "setup-config") && (target && target.roles.find(val => val.name === "muted"))) {
@@ -112,6 +112,7 @@ module.exports.run = (client, message, args) => {
 exports.conf = {
     aliases: []
 };
+
 
 exports.help = {
     name: "mute",
