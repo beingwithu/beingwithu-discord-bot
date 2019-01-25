@@ -103,7 +103,7 @@ client.on('guildMemberAdd', (member) => {
 			gm()
 			.in('-page', '+0+0')
 			.in(background)
-			.in('-page', '+x+y')
+			.in('-page', '+100+100')
 			.in(avatar)
 			.mosaic()
 			.write(w_template, function (err) { if (err) { callback(err); }})
