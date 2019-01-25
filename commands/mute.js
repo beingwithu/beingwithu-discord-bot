@@ -38,11 +38,9 @@ module.exports.run = (client, message, args) => {
 
 
 
-
-
     function setChannelPerms(state) {
     	const muted = message.guild.roles.find(val => val.name === "muted");
-	if (state !== "true") { return message.reply(`\`${config.prefix}mute setup-config true\``); }
+		if (state !== "true") { return message.reply(`\`${config.prefix}mute setup-config true\``); }
 
     	message.guild.channels.forEach(async (channel, id) => {
 			await channel.overwritePermissions(muted, {
@@ -94,16 +92,19 @@ module.exports.run = (client, message, args) => {
 		if (args[0] === "setup-config") {
 			setChannelPerms(args[1])
 		}
+
 		if (!message.guild.roles.find(val => val.name === "muted")) {
 			message.channel.send("Oops, seems like there is no \`muted\` role for this server. Allow me to make one for you!");
 			createMute();
 		}
+
 		else if (target) {
 			muted_role = message.guild.roles.find(val => val.name === "muted");
 			mute(target, muted_role, time);
 			setTimeout(unmute, time, target, muted_role);
 		}
 	}
+
 	main();
 };
 
