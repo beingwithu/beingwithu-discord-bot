@@ -16,7 +16,7 @@ module.exports.run = (client, message, args) => {
     	return message.reply("provide a @user to unmute");
     }
 
-    if (target && !target.roles.find(val => val.name === "muted") {
+    if (target && !target.roles.find(val => val.name === "muted")) {
     	return message.reply(`${target.user.username} is not muted`);
     }
 
