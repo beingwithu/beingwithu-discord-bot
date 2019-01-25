@@ -4,7 +4,8 @@ module.exports.run = (client, message, args) => {
     const sysop = require("../sysop.js");
     const target = message.mentions.members.first();
 
-    if (sysop.check(message.author.id) === false && !message.member.hasPermission("MANAGE_ROLES")) {
+
+    if (sysop.check_user(message.author.id) === false && !message.member.hasPermission("MANAGE_ROLES")) {
     	return message.reply("you must be \`Leader\` to use this command");
     }
 
@@ -21,6 +22,7 @@ module.exports.run = (client, message, args) => {
     }
 
 
+
     function unmute(target, muted_role) {
     	 target.removeRole(muted_role).catch(console.error);
     	 return message.channel.send(`<@${target.user.id}> has been unmuted`);
@@ -35,9 +37,11 @@ module.exports.run = (client, message, args) => {
     main();
 };
 
+
 exports.conf = {
     aliases: []
 };
+
 
 exports.help = {
     name: "unmute",
