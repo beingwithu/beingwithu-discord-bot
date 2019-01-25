@@ -21,17 +21,17 @@ module.exports.run = (client, message, args) => {
     }
 
 
-    function unmute(muted_role) {
+    function unmute(target, muted_role) {
     	 target.removeRole(muted_role).catch(console.error);
-    	 return message.channel(`<@${target.user.id} has been unmuted`);
+    	 return message.channel.send(`<@${target.user.id}> has been unmuted`);
     }
 
 
     function main() {
         const muted = message.guild.roles.find(val => val.name === "muted");
-        return 0;
+        unmute(target, muted);
     }
-    
+
     main();
 };
 
@@ -41,6 +41,6 @@ exports.conf = {
 
 exports.help = {
     name: "unmute",
-    description: "no description seet",
+    description: "no description set",
     usage: "unmute @user"
 };
