@@ -114,6 +114,6 @@ exports.conf = {
 
 exports.help = {
     name: "mute",
-    description: "no description",
+    description: "no description set",
     usage: "mute @user <optional: time>"
 };
