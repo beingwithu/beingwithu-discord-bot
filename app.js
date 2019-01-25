@@ -185,7 +185,7 @@ client.on("message", (message) => {
 	}
 	catch (err) {
 		console.log(`${message.author.tag} tried to use ${config.prefix}${command}\n`); // info on which command was triggered the error
-		console.log(err);
+	// 	console.log(err);
 	}
 	return undefined;
 });
