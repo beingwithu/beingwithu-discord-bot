@@ -8,7 +8,7 @@ module.exports.run = (client, message, args) => {
     	return message.reply("you must be \`Leader\` to use this command");
     }
 
-	  if (!args[0] || args[3]) {
+    if (!args[0] || args[3]) {
     	return message.reply(`use    \`${config.prefix}mute @user <optional: time>\``);
     }
 
