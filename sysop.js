@@ -7,8 +7,9 @@ let check = function(user_id) {
 		if (user_id === Sysop[x]) {
 			sysop_status = true;
 			break;
+		} else { 
+			sysop_status = false; 
 		}
-		else { sysop_status = false; }
 	}
 	return sysop_status;
 }
